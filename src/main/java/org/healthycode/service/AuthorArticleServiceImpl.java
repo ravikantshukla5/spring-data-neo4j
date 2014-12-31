@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.healthycode.domain.Author;
-import org.healthycode.repository.RoleRepository;
-import org.healthycode.repository.UserRepository;
+import org.healthycode.repository.ArticleRepository;
+import org.healthycode.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.conversion.Result;
 import org.springframework.stereotype.Service;
@@ -16,21 +16,21 @@ import org.springframework.transaction.annotation.Transactional;
 public class AuthorArticleServiceImpl implements AuthorArticleService{
 
 	@Autowired
-	private UserRepository userRepository;
+	private AuthorRepository authorRepository;
 	
 	@Autowired
-	private RoleRepository roleRepository;
+	private ArticleRepository airticleRepository;
 	
 	@Transactional(readOnly=false)
 	public Author create(Author user) {
-		Author existingUser = userRepository.findByUsername(user.getUsername());
+		Author existingUser = authorRepository.findByUsername(user.getUsername());
 		
 		if (existingUser != null) {
 			throw new RuntimeException("Record already exists!");
 		}
 		
 		user.getArticle().setUser(user);
-		return userRepository.save(user);
+		return authorRepository.save(user);
 	}
 	
 	public Author read(Author user) {
@@ -40,7 +40,7 @@ public class AuthorArticleServiceImpl implements AuthorArticleService{
 	public List<Author> readAll() {
 		List<Author> users = new ArrayList<Author>();
 		
-		Result<Author> results = userRepository.findAll();
+		Result<Author> results = authorRepository.findAll();
 		for (Author r: results) {
 			users.add(r);
 		}
@@ -49,7 +49,7 @@ public class AuthorArticleServiceImpl implements AuthorArticleService{
 	}
 	@Transactional(readOnly=false)
 	public Author update(Author user) {
-		Author existingUser = userRepository.findByUsername(user.getUsername());
+		Author existingUser = authorRepository.findByUsername(user.getUsername());
 		
 		if (existingUser == null) {
 			return null;
@@ -59,18 +59,18 @@ public class AuthorArticleServiceImpl implements AuthorArticleService{
 		existingUser.setLastName(user.getLastName());
 		existingUser.getArticle().setArticle(user.getArticle().getArticle());
 		
-		roleRepository.save(existingUser.getArticle());
-		return userRepository.save(existingUser);
+		airticleRepository.save(existingUser.getArticle());
+		return authorRepository.save(existingUser);
 	}
 	@Transactional(readOnly=false)
 	public Boolean delete(Author user) {
-		Author existingUser = userRepository.findByUsername(user.getUsername());
+		Author existingUser = authorRepository.findByUsername(user.getUsername());
 		
 		if (existingUser == null) {
 			return false;
 		}
 		
-		userRepository.delete(existingUser);
+		authorRepository.delete(existingUser);
 		return true;
 	}
 }

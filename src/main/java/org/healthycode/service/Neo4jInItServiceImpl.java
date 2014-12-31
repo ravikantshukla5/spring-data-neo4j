@@ -2,13 +2,13 @@ package org.healthycode.service;
 
 import org.healthycode.domain.Article;
 import org.healthycode.domain.Author;
-import org.healthycode.repository.UserRepository;
+import org.healthycode.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class Neo4jInItServiceImpl implements Neo4jInItService{
 	
 	@Autowired
-	private UserRepository userRepository;
+	private AuthorRepository userRepository;
 
 	public void init() {
 		if (userRepository.findByUsername("arunram@ramselabs.com") != null) {
