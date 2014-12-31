@@ -4,20 +4,22 @@ body {
 	margin: auto;
 }
 
-h1, hr {
+h1,hr {
 	margin: 0px;
 	padding: 0px;
+	width: 151.5%;
 }
 
 #banner {
-	background: black;
+	background: rgb(68, 224, 47);
 	padding: 5px;
 	color: white;
 	margin-top: 5px;
+	width: 150%;
 }
 
 #controlBar {
-	padding-top: 3px;	
+	padding-top: 3px;
 }
 
 table {
@@ -26,10 +28,11 @@ table {
 	border-collapse: collapse;
 }
 
-tr, td, th {
+tr,td,th {
 	border: 1px solid;
 	text-align: left;
-	padding: 5px;
+	/* padding: 5px; */
+	padding: 3.2%;
 }
 
 caption {
@@ -50,8 +53,8 @@ form input {
 	float: right;
 }
 
-fieldset input, fieldset select {
-	margin-left: 10px;	
+fieldset input,fieldset select {
+	margin-left: 10px;
 	float: none;
 }
 

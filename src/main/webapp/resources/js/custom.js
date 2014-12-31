@@ -8,18 +8,19 @@ function loadTable() {
 		
  		$('#tableUsers').find('tbody').remove();
  		
- 		for (var i=0; i<response.users.length; i++) {
+ 		for (var i=0; i<response.authors.length; i++) {
 			var row = '<tr>';
 			row += '<td><input type="radio" name="index" id="index" value="'+i+'"></td>';
-			row += '<td>' + response.users[i].username + '</td>';
-			row += '<td>' + response.users[i].firstName + '</td>';
-			row += '<td>' + response.users[i].lastName + '</td>';
-			row += '<td>' + getRole(response.users[i].role) + '</td>';
+			row += '<td>' + response.authors[i].username + '</td>';
+			row += '<td>' + response.authors[i].firstName + '</td>';
+			row += '<td>' + response.authors[i].lastName + '</td>';
+			row += '<td>' + response.authors[i].designation + '</td>';
+			row += '<td>' + getArticle(response.authors[i].article) + '</td>';
 			row += '</tr>';
 	 		$('#tableUsers').append(row);
  		}
  		
- 		$('#tableUsers').data('model', response.users);
+ 		$('#tableUsers').data('model', response.authors);
 		toggleForms('hide'); ;
  	});
 }
@@ -30,7 +31,8 @@ function submitNewRecord() {
 			password: $('#newPassword').val(),
 			firstName: $('#newFirstName').val(),
 			lastName: $('#newLastName').val(),
-			role: $('#newRole').val()
+			designation: $('#newDesignation').val(),
+			article: $('#newArticle').val()
 		}, 
 		function(response) {
 			if (response != null) {
@@ -67,7 +69,8 @@ function submitUpdateRecord() {
 			username: $('#editUsername').val(),
 			firstName: $('#editFirstName').val(),
 			lastName: $('#editLastName').val(),
-			role: $('#editRole').val()
+			designation: $('#newDesignation').val(),
+			article: $('#editArticle').val()
 		}, 
 		function(response) {
 			if (response != null) {
@@ -82,11 +85,11 @@ function submitUpdateRecord() {
 	);
 }
 
-function getRole(role) {
-	if (role == 1) {
-		return 'Admin';
-	} else if (role == 2) {
-		return 'Regular';
+function getArticle(article) {
+	if (article == 1) {
+		return 'Neo4J-Database';
+	} else if (article == 2) {
+		return 'Spring-Data-Neo4J';
 	} else {
 		return 'Unknown';
 	} 
@@ -107,7 +110,8 @@ function fillEditForm() {
 	$('#editUsername').val( $('#tableUsers').data('model')[selected].username );
 	$('#editFirstName').val( $('#tableUsers').data('model')[selected].firstName );
 	$('#editLastName').val( $('#tableUsers').data('model')[selected].lastName );
-	$('#editRole').val( $('#tableUsers').data('model')[selected].role );
+	$('#editDesignation').val( $('#tableUsers').data('model')[selected].designation );
+	$('#editArticle').val( $('#tableUsers').data('model')[selected].article );
 }
 
 function resetNewForm() {

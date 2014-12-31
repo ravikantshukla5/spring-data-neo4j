@@ -1,9 +1,9 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 
-<c:url value="/users/records" var="recordsUrl"/>
-<c:url value="/users/create" var="addUrl"/>
-<c:url value="/users/update" var="editUrl"/>
-<c:url value="/users/delete" var="deleteUrl"/>
+<c:url value="/authors/records" var="recordsUrl"/>
+<c:url value="/authors/create" var="addUrl"/>
+<c:url value="/authors/update" var="editUrl"/>
+<c:url value="/authors/delete" var="deleteUrl"/>
 
 <html>
 <head>
@@ -69,7 +69,7 @@
 </head>
 
 <body>
-	<h1 id='banner'>Record System</h1>
+	<h1 id='banner'>Heathycode Record System</h1>
 	<hr/>
 	
 	<table id='tableUsers'>
@@ -80,7 +80,8 @@
 				<th>Username</th>
 				<th>First Name</th>
 				<th>Last Name</th>
-				<th>Role</th>
+				<th>Designation</th>
+				<th>Article</th>
 			</tr>
 		</thead>
 	</table>
@@ -100,10 +101,11 @@
 				<label for='newPassword'>Password</label><input type='password' id='newPassword'/><br/>
 				<label for='newFirstName'>First Name</label><input type='text' id='newFirstName'/><br/>
 				<label for='newLastName'>Last Name</label><input type='text' id='newLastName'/><br/>
-				<label for='newRole'>Role</label>
-					<select id='newRole'>
-						<option value='1'>Admin</option>
-						<option value='2' selected='selected'>Regular</option>
+				<label for='newDesignation'>Designation</label><input type='text' id='newDesignation'/><br/>
+				<label for='newArticle'>Article</label>
+					<select id='newArticle'>
+						<option value='1'>Neo4J-Database</option>
+						<option value='2' selected='selected'>Spring-Data-Neo4J</option>
 					</select>
   			</fieldset>
 			<input type='button' value='Close' id='closeNewForm' />
@@ -118,10 +120,11 @@
 				<input type='hidden' id='editUsername'/>
 				<label for='editFirstName'>First Name</label><input type='text' id='editFirstName'/><br/>
 				<label for='editLastName'>Last Name</label><input type='text' id='editLastName'/><br/>
-				<label for='editRole'>Role</label>
-					<select id='editRole'>
-						<option value='1'>Admin</option>
-						<option value='2' selected='selected'>Regular</option>
+				<label for='editDesignation'>Designation</label><input type='text' id='editDesignation'/><br/>
+				<label for='editArticle'>Article</label>
+					<select id='editArticle'>
+						<option value='1'>Neo4J-Database</option>
+						<option value='2' selected='selected'>Spring-Data-Neo4J</option>
 					</select>
 			</fieldset>
 			<input type='button' value='Close' id='closeEditForm' />

@@ -27,7 +27,7 @@
 	<neo4j:config base-package="org.healthycode" storeDirectory="target/temp.db" />
    
 	<!-- This service can be used to create same sample users or initialization of resources  -->
-	<bean id="neo4jInItService" class="org.healthycode.service.Neo4jInItService" 
+	<bean id="neo4jInItService" class="org.healthycode.service.Neo4jInItServiceImpl" 
 		init-method="init"/>
 
 	<tx:annotation-driven mode="proxy"/>

@@ -5,17 +5,17 @@ import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.RelationshipEntity;
 import org.springframework.data.neo4j.annotation.StartNode;
 
-@RelationshipEntity(type = "HAS_ROLE")
-public class UserRoleRelationship {
+@RelationshipEntity(type = "HAS_WRITTEN")
+public class AuthorArticleRelationship {
 
 	@GraphId
 	private Long id; 
 	
 	private String description;
 	
-	@StartNode private User user;
+	@StartNode private Author author;
 	
-	@EndNode private Role role;
+	@EndNode private Article article;
 
 	public String getDescription() {
 		return description;
@@ -24,21 +24,20 @@ public class UserRoleRelationship {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public User getUser() {
-		return user;
+	public Author getAuthor() {
+		return author;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setAuthor(Author author) {
+		this.author = author;
 	}
 
-	public Role getRole() {
-		return role;
+	public Article getArticle() {
+		return article;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setArticle(Article article) {
+		this.article = article;
 	}
 
 	public Long getId() {

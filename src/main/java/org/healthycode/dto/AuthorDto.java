@@ -2,7 +2,7 @@ package org.healthycode.dto;
 
 import java.io.Serializable;
 
-public class UserDto implements Serializable {
+public class AuthorDto implements Serializable {
 	
 	/**
 	 * 
@@ -12,7 +12,8 @@ public class UserDto implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String username;
-	private Integer role;
+	private Integer article;
+	private String designation;
 	
 	public Long getId() {
 		return id;
@@ -38,10 +39,17 @@ public class UserDto implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public Integer getRole() {
-		return role;
+	public Integer getArticle() {
+		return article;
 	}
-	public void setRole(Integer role) {
-		this.role = role;
+	public void setArticle(Integer article) {
+		this.article = article;
 	}
+	public String getDesignation() {
+		return designation;
+	}
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+	
 }

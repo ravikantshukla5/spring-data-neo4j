@@ -7,39 +7,42 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.RelatedTo;
 
 @NodeEntity
-public class User {
+public class Author {
 	
 	@GraphId
 	private Long id;
 	
 	private String firstName;
 	private String lastName;
+	private String designation;
 	
 	@Indexed
 	private String username;
 	private String password;
 	
-	@Fetch @RelatedTo(type = "HAS_ROLE")
-	private Role role;
+	@Fetch @RelatedTo(type = "HAS_WRITTEN")
+	private Article article;
 	
-	public User() {}
+	public Author() {}
 	
-	public User(String username, String password, String firstName, String lastName, Role role) {
+	public Author(String username, String password, String firstName, String lastName, Article article, String designation) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.role = role;
+		this.article = article;
+		this.designation = designation;
 	}
 	
-	public User(String username, String firstName, String lastName, Role role) {
+	public Author(String username, String firstName, String lastName, Article article,String designation) {
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.role = role;
+		this.article = article;
+		this.designation = designation;
 	}
 
-	public User(String username) {
+	public Author(String username) {
 		this.username = username;
 	}
 	
@@ -83,11 +86,19 @@ public class User {
 		this.password = password;
 	}
 
-	public Role getRole() {
-		return role;
+	public String getDesignation() {
+		return designation;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+
+	public Article getArticle() {
+		return article;
+	}
+
+	public void setArticle(Article article) {
+		this.article = article;
 	}
 }

@@ -3,7 +3,7 @@ package org.healthycode.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.healthycode.domain.User;
+import org.healthycode.domain.Author;
 import org.healthycode.repository.RoleRepository;
 import org.healthycode.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional(readOnly=true)
-public class UserService {
+public class AuthorArticleServiceImpl implements AuthorArticleService{
 
 	@Autowired
 	private UserRepository userRepository;
@@ -22,34 +22,34 @@ public class UserService {
 	private RoleRepository roleRepository;
 	
 	@Transactional(readOnly=false)
-	public User create(User user) {
-		User existingUser = userRepository.findByUsername(user.getUsername());
+	public Author create(Author user) {
+		Author existingUser = userRepository.findByUsername(user.getUsername());
 		
 		if (existingUser != null) {
 			throw new RuntimeException("Record already exists!");
 		}
 		
-		user.getRole().setUser(user);
+		user.getArticle().setUser(user);
 		return userRepository.save(user);
 	}
 	
-	public User read(User user) {
+	public Author read(Author user) {
 		return user;
 	}
 	
-	public List<User> readAll() {
-		List<User> users = new ArrayList<User>();
+	public List<Author> readAll() {
+		List<Author> users = new ArrayList<Author>();
 		
-		Result<User> results = userRepository.findAll();
-		for (User r: results) {
+		Result<Author> results = userRepository.findAll();
+		for (Author r: results) {
 			users.add(r);
 		}
 		
 		return users;
 	}
 	@Transactional(readOnly=false)
-	public User update(User user) {
-		User existingUser = userRepository.findByUsername(user.getUsername());
+	public Author update(Author user) {
+		Author existingUser = userRepository.findByUsername(user.getUsername());
 		
 		if (existingUser == null) {
 			return null;
@@ -57,14 +57,14 @@ public class UserService {
 		
 		existingUser.setFirstName(user.getFirstName());
 		existingUser.setLastName(user.getLastName());
-		existingUser.getRole().setRole(user.getRole().getRole());
+		existingUser.getArticle().setArticle(user.getArticle().getArticle());
 		
-		roleRepository.save(existingUser.getRole());
+		roleRepository.save(existingUser.getArticle());
 		return userRepository.save(existingUser);
 	}
 	@Transactional(readOnly=false)
-	public Boolean delete(User user) {
-		User existingUser = userRepository.findByUsername(user.getUsername());
+	public Boolean delete(Author user) {
+		Author existingUser = userRepository.findByUsername(user.getUsername());
 		
 		if (existingUser == null) {
 			return false;
