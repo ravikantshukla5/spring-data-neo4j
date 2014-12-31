@@ -13,26 +13,25 @@
 			
 	<context:property-placeholder properties-ref="deployProperties" />
 
-	<!-- Activates various annotations to be detected in bean classes -->
+	<!-- This is used to tell spring container to detect annotations -->
 	<context:annotation-config />
 
-	<!-- Scans the classpath for annotated components that will be auto-registered as Spring beans.
+	<!-- Scan for spring stereo types and Controllers and Services
 	 For example @Controller and @Service. Make sure to set the correct base-package -->
 	<context:component-scan base-package="org.healthycode" />
 
-	<!-- Configures the annotation-driven Spring MVC Controller programming model.
-	Note that, with Spring 3.0, this tag works in Servlet MVC only!  -->
+	<!-- For enabling spring mvc annatations  -->
 	<mvc:annotation-driven /> 
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" /> 
  	
  	<!-- Imports logging configuration -->
-	<import resource="trace-context.xml"/>
+	<import resource="logging-context.xml"/>
 	
 	<!-- Imports datasource configuration -->
-	<import resource="spring-data.xml"/>
+	<import resource="spring-data-neo4j.xml"/>
 	
 	<bean id="deployProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean"
-        p:location="/WEB-INF/spring.properties" />
+        p:location="/WEB-INF/spring-neo4j.properties" />
         
 </beans>

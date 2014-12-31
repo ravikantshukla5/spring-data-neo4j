@@ -25,10 +25,10 @@
 	<neo4j:repositories base-package="org.healthycode.repository" />
 
 	<neo4j:config base-package="org.healthycode" storeDirectory="target/temp.db" />
-
-	<!-- Service for initializing Neo4j with sample data. Currently disabled 
-		due to an unconfirmed bug <bean id="initNeo4jService" class="org.krams.service.InitNeo4jService" 
-		init-method="init"/> -->
+   
+	<!-- This service can be used to create same sample users or initialization of resources  -->
+	<bean id="neo4jInItService" class="org.healthycode.service.Neo4jInItService" 
+		init-method="init"/>
 
 	<tx:annotation-driven mode="proxy"/>
 </beans>
