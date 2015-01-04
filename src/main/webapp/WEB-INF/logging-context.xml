@@ -12,7 +12,7 @@
 	<!-- For parsing classes with @Aspect annotation -->
 	<aop:aspectj-autoproxy/>
 
-	<bean id="customizableTraceInterceptor" class="org.healthycode.aop.TraceInterceptor"
+	<bean id="customizableTraceInterceptor" class="org.healthycode.aop.LoggerInterceptor"
 		p:enterMessage="Entering $[targetClassShortName].$[methodName]($[arguments])"
 		p:exitMessage="Leaving $[targetClassShortName].$[methodName](): $[returnValue]"/>
 
